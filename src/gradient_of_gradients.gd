@@ -8,6 +8,12 @@ extends Resource
 		_add_changed_listeners_to_gradients()
 		changed.emit()
 
+@export var _ping_pong: bool:
+	set(value):
+		if value != _ping_pong:
+			_ping_pong = value
+			changed.emit()
+
 
 func _add_changed_listeners_to_gradients() -> void:
 	for gradient: GradientPoint in gradients:
@@ -60,6 +66,15 @@ func sample_x_as_gradient(x: float, resolution: int = 10) -> Gradient:
 
 
 func sample(position: Vector2) -> Color:
+	position.x = clamp(position.x, 0, 1)
+	position.y = clamp(position.y, 0, 1)
+
+	if _ping_pong:
+		if position.x < 0.5:
+			position.x *= 2
+		else:
+			position.x = 1.0 - inverse_lerp(0.5, 1.0, position.x)
+
 	var neighbouring_gradients := _get_neighbouring_gradients(position.x)
 
 	if neighbouring_gradients.is_empty():
