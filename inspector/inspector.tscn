@@ -37,6 +37,7 @@ texture = ExtResource("3_yja35")
 flip_v = true
 
 [node name="GradientPrototype" type="Button" parent="Preview" unique_id=309222077 node_paths=PackedStringArray("_texture_rect")]
+visible = false
 layout_mode = 2
 script = ExtResource("5_mslh8")
 _texture_rect = NodePath("MarginContainer/FlipAxes/TextureRect")

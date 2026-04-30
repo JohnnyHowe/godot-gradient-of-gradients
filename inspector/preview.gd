@@ -45,6 +45,7 @@ func _update_gradient_drawers() -> void:
 		else:
 			drawer.visible = true
 			drawer.set_gradient(valid_points[drawer_index])
+			drawer.set_target(_target)
 
 
 func _create_new_gradient_drawer() -> void:
