@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://0ytgnv44tkon"]
+
+[ext_resource type="Script" uid="uid://bm06ydmcsj0pw" path="res://addons/gradient_of_gradients/inspector/inspector.gd" id="1_eyndn"]
+[ext_resource type="Theme" uid="uid://dsmqxyqeqrgt2" path="res://addons/gradient_of_gradients/inspector/inspector_theme.tres" id="1_l5am3"]
+[ext_resource type="Script" uid="uid://7nbkcmhx5oxy" path="res://addons/gradient_of_gradients/inspector/preview.gd" id="3_ts28j"]
+[ext_resource type="Texture2D" uid="uid://83k0561n8rv7" path="res://icon.svg" id="3_yja35"]
+[ext_resource type="Script" uid="uid://clawnerbgpwpg" path="res://addons/gradient_of_gradients/inspector/gradient_drawer.gd" id="5_mslh8"]
+[ext_resource type="Script" uid="uid://3qi4fneg3ehy" path="res://addons/gradient_of_gradients/inspector/flip_axes_container.gd" id="5_ts28j"]
+
+[node name="Inspector" type="VBoxContainer" unique_id=1611580257]
+custom_minimum_size = Vector2(0, 150)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_l5am3")
+script = ExtResource("1_eyndn")
+
+[node name="Preview" type="MarginContainer" parent="." unique_id=1043071082 node_paths=PackedStringArray("_texture_rect", "_gradient_drawer_prototype")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_ts28j")
+_texture_rect = NodePath("MarginContainer/Preview")
+_gradient_drawer_prototype = NodePath("GradientPrototype")
+
+[node name="MarginContainer" type="MarginContainer" parent="Preview" unique_id=46773393]
+layout_mode = 2
+
+[node name="Preview" type="TextureRect" parent="Preview/MarginContainer" unique_id=1876084693]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_yja35")
+flip_v = true
+
+[node name="GradientPrototype" type="Button" parent="Preview" unique_id=309222077 node_paths=PackedStringArray("_texture_rect")]
+layout_mode = 2
+script = ExtResource("5_mslh8")
+_texture_rect = NodePath("MarginContainer/FlipAxes/TextureRect")
+
+[node name="ColorRect" type="ColorRect" parent="Preview/GradientPrototype" unique_id=1488685211]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Preview/GradientPrototype/ColorRect" unique_id=204916522]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="ColorRect2" type="ColorRect" parent="Preview/GradientPrototype/ColorRect/MarginContainer" unique_id=1571042485]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Preview/GradientPrototype" unique_id=1852610422]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="FlipAxes" type="Container" parent="Preview/GradientPrototype/MarginContainer" unique_id=627797574]
+layout_mode = 2
+script = ExtResource("5_ts28j")
+
+[node name="TextureRect" type="TextureRect" parent="Preview/GradientPrototype/MarginContainer/FlipAxes" unique_id=1913128141]
+layout_mode = 2
+texture = ExtResource("3_yja35")
+
+[connection signal="target_changed" from="." to="Preview" method="refresh"]
+[connection signal="target_set" from="." to="Preview" method="set_target"]
