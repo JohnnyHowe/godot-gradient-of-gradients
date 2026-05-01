@@ -50,14 +50,14 @@ func create_image(size: Vector2i, format := Image.FORMAT_RGB8) -> Image:
 	return image
 
 
-func sample_x_as_texture(x: float, resolution: int = 10) -> GradientTexture1D:
+func sample_x_as_texture(x: float, resolution: int = 32) -> GradientTexture1D:
 	var texture := GradientTexture1D.new()
 	texture.gradient = sample_x_as_gradient(x, resolution)
 	texture.width = resolution
 	return texture
 
 
-func sample_x_as_gradient(x: float, resolution: int = 10) -> Gradient:
+func sample_x_as_gradient(x: float, resolution: int = 32) -> Gradient:
 	var gradient := Gradient.new()
 	for sample_index in range(resolution):
 		var sample_y: float = float(sample_index) / (resolution - 1)
@@ -96,6 +96,21 @@ func sample(position: Vector2) -> Color:
 	return lerp(left_sample, right_sample, weight)
 
 
+static func lerp_gradients(start: Gradient, end: Gradient, weight: float, resolution: int = 32) -> Gradient:
+	weight = clamp(weight, 0, 1)
+	resolution = max(resolution, 2)
+
+	var result := Gradient.new()
+
+	for sample_index in range(resolution):
+		var sample_t := float(sample_index) / (resolution - 1)
+		var start_sample := start.sample(sample_t)
+		var end_sample := end.sample(sample_t)
+		result.add_point(sample_t, start_sample.lerp(end_sample, weight))
+
+	return result
+
+
 func _get_neighbouring_gradients(x: float) -> Array[GradientPoint]:
 	if gradients.is_empty():
 		return []
@@ -131,7 +146,7 @@ func _get_sorted_gradients() -> Array[GradientPoint]:
 
 
 func get_valid_gradient_points() -> Array[GradientPoint]:
-	var points : Array[GradientPoint] = []
+	var points: Array[GradientPoint] = []
 	for point in gradients:
 		if point == null:
 			continue
