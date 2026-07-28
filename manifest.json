@@ -2,7 +2,7 @@
 	"name": "gradient_of_gradients",
 	"dependencies": {
 		"jons-ui-extensions": {
-			"url": null,
+			"url": "https://github.com/JohnnyHowe/godot-jons-ui-extensions",
 			"revision": null
 		}
 	}
