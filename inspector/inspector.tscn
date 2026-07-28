@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bm06ydmcsj0pw" path="res://addons/gradient_of_gradients/inspector/inspector.gd" id="1_eyndn"]
 [ext_resource type="Theme" uid="uid://dsmqxyqeqrgt2" path="res://addons/gradient_of_gradients/inspector/inspector_theme.tres" id="1_l5am3"]
 [ext_resource type="Script" uid="uid://7nbkcmhx5oxy" path="res://addons/gradient_of_gradients/inspector/preview.gd" id="3_ts28j"]
-[ext_resource type="Texture2D" uid="uid://83k0561n8rv7" path="res://icon.svg" id="3_yja35"]
+[ext_resource type="Texture2D" uid="uid://dppwmewrxmyf1" path="res://addons/gradient_of_gradients/resources/icon.svg" id="3_yja35"]
 [ext_resource type="Script" uid="uid://clawnerbgpwpg" path="res://addons/gradient_of_gradients/inspector/gradient_drawer.gd" id="5_mslh8"]
 [ext_resource type="Script" uid="uid://3qi4fneg3ehy" path="res://addons/gradient_of_gradients/inspector/flip_axes_container.gd" id="5_ts28j"]
 

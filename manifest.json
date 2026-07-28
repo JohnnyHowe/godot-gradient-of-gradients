@@ -1,0 +1,9 @@
+{
+	"name": "gradient_of_gradients",
+	"dependencies": {
+		"jons-ui-extensions": {
+			"url": null,
+			"revision": null
+		}
+	}
+}
